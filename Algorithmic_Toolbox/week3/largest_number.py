@@ -1,13 +1,13 @@
-from itertools import permutations
-
-
 def largest_number_naive(numbers):
     numbers = list(map(str, numbers))
 
-    largest = 0
+    largest = ''
+    nums = []
+    for num in numbers:
+        nums.append([num, num+num[0]*(4-len(num))])
 
-    for permutation in permutations(numbers):
-        largest = max(largest, int("".join(permutation)))
+    for i, _ in sorted(nums, key=lambda x:(x[1],x[0][-1]), reverse=True):
+        largest += i
 
     return largest
 
