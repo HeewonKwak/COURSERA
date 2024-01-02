@@ -2,7 +2,15 @@ from sys import stdin
 
 
 def maximum_gold(capacity, weights):
-    assert False
+    dp = [{0}]
+    for idx, weight in enumerate(weights):
+        case = set()
+        for i in dp[idx]:
+            case.add(i)
+            if i + weight <= capacity:
+                case.add(i+weight)
+        dp.append(case)
+    return max(dp[-1])
 
 
 if __name__ == '__main__':
